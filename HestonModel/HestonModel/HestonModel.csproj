@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F71ADE90-705B-4BA1-9144-097A65A45371}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HestonModel</RootNamespace>
+    <AssemblyName>HestonModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ss</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;ss</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Numerics, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.7.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Instruction.cs" />
+    <Compile Include="Interfaces\IRainbowOption.cs" />
+    <Compile Include="Interfaces\IShoutOption.cs" />
+    <Compile Include="NumericalTools\CompositeIntegrator.cs" />
+    <Compile Include="Enums\CalibrationOutcome.cs" />
+    <Compile Include="Instance\Example.cs" />
+    <Compile Include="HestonModel\ExoticOptionExploration.cs" />
+    <Compile Include="HestonModel\GeneratePath.cs" />
+    <Compile Include="Old\GraphicInUse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Old\GraphicInUse.Designer.cs">
+      <DependentUpon>GraphicInUse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Heston.cs" />
+    <Compile Include="Old\HestonCalibrationResult.cs" />
+    <Compile Include="HestonModel\HestonCalibrator.cs" />
+    <Compile Include="HestonModel\HestonModelFormula.cs" />
+    <Compile Include="HestonModel\HestonModelMonteCarlo.cs" />
+    <Compile Include="HestonModel\HestonModelParameters.cs" />
+    <Compile Include="Old\HestonParametersGrading.cs" />
+    <Compile Include="Interfaces\IAsianOption.cs" />
+    <Compile Include="Interfaces\ICalibrationResult.cs" />
+    <Compile Include="Interfaces\ICalibrationSettings.cs" />
+    <Compile Include="Interfaces\IEuropeanOption.cs" />
+    <Compile Include="Interfaces\IHestonCalibrationResult.cs" />
+    <Compile Include="Interfaces\IHestonParameters.cs" />
+    <Compile Include="Interfaces\IModelParameters.cs" />
+    <Compile Include="Interfaces\IMonteCarloSettings.cs" />
+    <Compile Include="Interfaces\IOption.cs" />
+    <Compile Include="Interfaces\IOptionMarketData.cs" />
+    <Compile Include="Enums\PayoffType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Old\VarianceProcessParametersGrading.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Link>README.md</Link>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlglibCSharpLib\AlglibCSharpLib.csproj">
+      <Project>{13D4EE49-7122-4A45-B4A4-FCF70AF15A3B}</Project>
+      <Name>AlglibCSharpLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Old\GraphicInUse.resx">
+      <DependentUpon>GraphicInUse.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
